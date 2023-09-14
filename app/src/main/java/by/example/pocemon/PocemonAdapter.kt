@@ -10,33 +10,33 @@ import androidx.recyclerview.widget.RecyclerView
 class PocemonAdapter(private val pocemonList: ArrayList<Pocemonmain>) :
     RecyclerView.Adapter<PocemonAdapter.PocemonViewHolder>() {
 
-    //var onItemClick:((LoanAgreemenData)->Unit)?=null
     class PocemonViewHolder(itemView: View, private val onItemClicked: (Int) -> Pocemonmain) :
-        RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        RecyclerView.ViewHolder(itemView) {
 
         var imageView = itemView.findViewById<ImageView>(R.id.imageView2)
         var textview: TextView = itemView.findViewById(R.id.textView2)
 
         init {
-            itemView.setOnClickListener(this)
+            itemView.setOnClickListener {
+                run {
+                    val info = onItemClicked(adapterPosition)
+                    itemView.context.startActivity(
+                        DetailActivity.createIntent(
+                            itemView.context,
+                            info.image, info.poce
+                        )
+                    )
+                }
+            }
         }
 
-        override fun onClick(position: View) {
-            val info =onItemClicked(adapterPosition)
-            itemView.context.startActivity(
-                DetailActivity.createIntent(
-                    itemView.context,
-                   info.image,info.poce
-                )
-            )
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PocemonViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_new, parent, false)
         return PocemonViewHolder(
             view
-        ) { position -> pocemonList[position]}
+        ) { position -> pocemonList[position] }
     }
 
     override fun getItemCount(): Int {
@@ -48,8 +48,6 @@ class PocemonAdapter(private val pocemonList: ArrayList<Pocemonmain>) :
         holder.imageView.setImageResource(pocemon.image)
         holder.textview.text = pocemon.poce.name
 
-        //holder.itemView.setOnClickListener{
-        // onItemClick?.invoke(pocemon)
     }
 }
 
