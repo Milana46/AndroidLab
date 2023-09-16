@@ -9,8 +9,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 
-private const val POCEMON_INFO = "POKEMON_INFO"
-private const val POCEMON_IMAGE = "POCEMON_IMAGE"
+private const val POCEMON_INFO = "POCEMON_INFO"
 
 
 class DetailActivity : AppCompatActivity() {
@@ -23,7 +22,6 @@ class DetailActivity : AppCompatActivity() {
 
 
         val info = intent.getSerializableExtra(POCEMON_INFO) as Pocemon
-        val image = intent.getSerializableExtra(POCEMON_IMAGE) as Int
         val btnback = findViewById<Button>(R.id.btnback)
         btnback.setOnClickListener {
             finish()
@@ -35,17 +33,19 @@ class DetailActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.weightValue).text = info.weight.toString()
 
 
+
         findViewById<ImageView>(R.id.imageView).setImageResource(
-            image
+          info.image
         )
+
     }
 
     companion object {
-        fun createIntent(context: Context, image: Int, info: Pocemon): Intent {
+        fun createIntent(context: Context, info: Pocemon): Intent {
             return Intent(
                 context,
                 DetailActivity::class.java
-            ).putExtra(POCEMON_INFO, info).putExtra(POCEMON_IMAGE, image)
+            ).putExtra(POCEMON_INFO, info)
         }
     }
 }

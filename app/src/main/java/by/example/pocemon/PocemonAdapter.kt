@@ -7,10 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class PocemonAdapter(private val pocemonList: ArrayList<Pocemonmain>) :
+class PocemonAdapter(private val pocemonList: ArrayList<Pocemon>) :
     RecyclerView.Adapter<PocemonAdapter.PocemonViewHolder>() {
 
-    class PocemonViewHolder(itemView: View, private val onItemClicked: (Int) -> Pocemonmain) :
+    class PocemonViewHolder(itemView: View, private val onItemClicked: (Int) -> Pocemon) :
         RecyclerView.ViewHolder(itemView) {
 
         var imageView = itemView.findViewById<ImageView>(R.id.imageView2)
@@ -23,7 +23,7 @@ class PocemonAdapter(private val pocemonList: ArrayList<Pocemonmain>) :
                     itemView.context.startActivity(
                         DetailActivity.createIntent(
                             itemView.context,
-                            info.image, info.poce
+                            info
                         )
                     )
                 }
@@ -46,7 +46,7 @@ class PocemonAdapter(private val pocemonList: ArrayList<Pocemonmain>) :
     override fun onBindViewHolder(holder: PocemonViewHolder, position: Int) {
         val pocemon = pocemonList[position]
         holder.imageView.setImageResource(pocemon.image)
-        holder.textview.text = pocemon.poce.name
+        holder.textview.text = pocemon.name
 
     }
 }
