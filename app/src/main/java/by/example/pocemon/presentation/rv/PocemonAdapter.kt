@@ -1,4 +1,4 @@
-package by.example.pocemon
+package by.example.pocemon.presentation.rv
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,11 +6,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import by.example.pocemon.R
+import by.example.pocemon.domain.entity.PocemonEntity
+import by.example.pocemon.presentation.Pocemon
+import by.example.pocemon.presentation.detail.DetailActivity
 
-class PocemonAdapter(private val pocemonList: ArrayList<Pocemon>) :
+class PocemonAdapter(private val pocemonList: List<PocemonEntity>) :
     RecyclerView.Adapter<PocemonAdapter.PocemonViewHolder>() {
 
-    class PocemonViewHolder(itemView: View, private val onItemClicked: (Int) -> Pocemon) :
+    class PocemonViewHolder(itemView: View, private val onItemClicked: (Int) -> PocemonEntity) :
         RecyclerView.ViewHolder(itemView) {
 
         var imageView = itemView.findViewById<ImageView>(R.id.imageView2)
@@ -47,7 +51,6 @@ class PocemonAdapter(private val pocemonList: ArrayList<Pocemon>) :
         val pocemon = pocemonList[position]
         holder.imageView.setImageResource(pocemon.image)
         holder.textview.text = pocemon.name
-
     }
 }
 
