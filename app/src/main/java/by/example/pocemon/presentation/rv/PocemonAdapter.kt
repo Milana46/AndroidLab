@@ -22,18 +22,15 @@ class PocemonAdapter(private val pocemonList: List<PocemonEntity>) :
 
         init {
             itemView.setOnClickListener {
-                run {
-                    val info = onItemClicked(adapterPosition)
-                    itemView.context.startActivity(
-                        DetailActivity.createIntent(
-                            itemView.context,
-                            info
-                        )
+                val info = onItemClicked(adapterPosition)
+                itemView.context.startActivity(
+                    DetailActivity.createIntent(
+                        itemView.context,
+                        info
                     )
-                }
+                )
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PocemonViewHolder {

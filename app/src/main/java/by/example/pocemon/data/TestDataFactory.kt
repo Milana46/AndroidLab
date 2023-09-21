@@ -4,8 +4,10 @@ import android.content.Context
 import by.example.pocemon.R
 import by.example.pocemon.domain.PocemonInteractor
 import by.example.pocemon.domain.entity.PocemonEntity
+import by.example.pocemon.domain.PocemonRepository
 
-class TestDataFactory(val context:Context) : PocemonInteractor.PocemonRepository {
+
+class TestDataFactory(val context:Context) : PocemonRepository{
 
     override fun getPocemonList(): List<PocemonEntity> {
         return listOf(

@@ -9,18 +9,22 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import by.example.pocemon.R
+import by.example.pocemon.databinding.ActivityDetail2Binding
 import by.example.pocemon.domain.entity.PocemonEntity
 import by.example.pocemon.presentation.Pocemon
 
-
-
-
 class DetailActivity : AppCompatActivity() {
+    private lateinit var binding:ActivityDetail2Binding
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        binding=ActivityDetail2Binding.inflate(layoutInflater)
+
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail2)
+       setContentView(binding.root)
+
 
 
         val info = intent.getSerializableExtra(POCEMON_INFO) as PocemonEntity
@@ -29,10 +33,12 @@ class DetailActivity : AppCompatActivity() {
             finish()
         }
 
-        findViewById<TextView>(R.id.nameValue).text = info.name
-        findViewById<TextView>(R.id.heightValue).text = info.height.toString()
-        findViewById<TextView>(R.id.weightValue).text = info.weight.toString()
-        findViewById<ImageView>(R.id.imageView).setImageResource(info.image)
+
+        binding.nameValue.text=info.name
+        binding.heightValue.text=info.height.toString()
+        binding.weightValue.text=info.weight.toString()
+        binding.imageView.setImageResource(info.image)
+
     }
 
     companion object {

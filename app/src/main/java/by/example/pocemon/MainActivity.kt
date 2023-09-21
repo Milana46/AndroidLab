@@ -1,1 +1,0 @@
-package by.example.pocemon
